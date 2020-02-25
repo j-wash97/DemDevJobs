@@ -1,0 +1,40 @@
+{
+  "name": "demdevjobs",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./src/server.js",
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
+  },
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests complete\"",
+    "nodemon": "nodemon --watch ./src --watch ./hosted -e js,html,css ./src/server/js",
+    "build": "babel ./client --out-file hosted/bundle.js",
+    "watch": "babel --watch ./client --out-file ./hosted/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-wash97/DemDevJobs.git"
+  },
+  "author": "Julian Washington",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j-wash97/DemDevJobs/issues"
+  },
+  "homepage": "https://github.com/j-wash97/DemDevJobs#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.0",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
+}

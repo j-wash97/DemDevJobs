@@ -1,0 +1,11 @@
+{ 
+  "extends": "airbnb/base",
+  "rules": {
+    "no-underscore-dangle" : "off",
+    "no-plusplus": "off",
+    "no-unused-vars": 1,
+    "no-console": 0,
+    "no-restricted-syntax": 1,
+    "brace-style": 0
+  }
+}
