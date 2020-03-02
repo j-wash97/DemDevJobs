@@ -1,6 +1,6 @@
 {
   "name": "demdevjobs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "./src/server.js",
   "engines": {
@@ -12,8 +12,8 @@
     "pretest": "eslint ./src --fix",
     "test": "echo \"Tests complete\"",
     "nodemon": "nodemon --watch ./src --watch ./hosted -e js,html,css ./src/server/js",
-    "build": "babel ./client --out-file hosted/bundle.js",
-    "watch": "babel --watch ./client --out-file ./hosted/bundle.js"
+    "build": "babel ./client --out-dir hosted",
+    "watch": "babel --watch ./client --out-dir hosted"
   },
   "repository": {
     "type": "git",
@@ -29,12 +29,10 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "babel-preset-minify": "^0.5.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.0",
     "nodemon": "^2.0.2"
-  },
-  "dependencies": {
-    "bootstrap": "^4.4.1"
   }
 }
