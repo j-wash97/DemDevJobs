@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{header}}</title>
+    <title>{{header}}{{#if header}} - {{/if}}Dem Dev Jobs</title>
     <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
     <script crossorigin src="https://unpkg.com/prop-types/prop-types.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">

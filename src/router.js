@@ -12,4 +12,6 @@ module.exports = (app) => {
   // app.post('/maker', mid.requireLogin, cont.Domo.maker);
   // app.get('/', mid.requireSecure, mid.requireLogout, cont.Account.loginPage);
   // app.get('/domos', cont.Domo.domoPage);
+
+  app.get('/', cont.GetIndex);
 };

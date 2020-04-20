@@ -7,43 +7,43 @@ let PostingModel = {};
 const PostingSchema = new mongo.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   level: {
     type: Number,
     required: true,
     min: 0,
-    max: 3
+    max: 3,
   },
   category: {
     type: Number,
     required: true,
     min: 0,
-    max: 3
+    max: 3,
   },
   location: {
     type: mongo.Schema.ObjectId,
     required: true,
-    ref: 'JobSite'
+    ref: 'JobSite',
   },
   company: {
     type: mongo.Schema.ObjectId,
     required: true,
-    ref: 'Company'
+    ref: 'Company',
   },
   salary: {
-    type: Number
+    type: Number,
   },
   link: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
     default: Date.now,
   },
   description: {
-    type: String
+    type: String,
   },
 });
 

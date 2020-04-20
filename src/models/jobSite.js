@@ -7,31 +7,31 @@ let JobSiteModel = {};
 const JobSiteSchema = new mongo.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
-    type: String
+    type: String,
   },
   company: {
     type: mongo.Schema.ObjectId,
     required: true,
-    ref: 'Company'
+    ref: 'Company',
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
-    required: true
+    required: true,
   },
   state: {
     type: String,
-    required: true
+    required: true,
   },
   zip: {
     type: String,
-    required: true
+    required: true,
   },
 });
 

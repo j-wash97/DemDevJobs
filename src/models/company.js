@@ -7,14 +7,14 @@ let CompanyModel = {};
 const CompanySchema = new mongo.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   contact: {
-    type: String
+    type: String,
   },
   owners: {
     type: [mongo.Schema.ObjectId],
-    ref: 'Account'
+    ref: 'Account',
   },
 });
 
