@@ -1,17 +1,17 @@
 {
   "name": "demdevjobs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
-  "main": "./src/server.js",
+  "main": "./src/app.js",
   "engines": {
     "node": "12.14.1",
     "npm": "6.13.4"
   },
   "scripts": {
-    "start": "node ./src/server.js",
+    "start": "node ./src/app.js",
     "pretest": "eslint ./src --fix",
     "test": "echo \"Tests complete\"",
-    "nodemon": "nodemon --watch ./src --watch ./hosted -e js,html,css ./src/server/js",
+    "nodemon": "env-cmd nodemon --watch ./src --watch ./hosted -e js,html,css ./src/app/js",
     "build": "babel ./client --out-dir hosted",
     "watch": "babel --watch ./client --out-dir hosted"
   },
@@ -27,12 +27,29 @@
   "homepage": "https://github.com/j-wash97/DemDevJobs#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
     "babel-preset-minify": "^0.5.1",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.20.0",
-    "nodemon": "^2.0.2"
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-redis": "^4.0.4",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "helmet": "^3.21.3",
+    "mongoose": "^5.9.5",
+    "redis": "^3.0.2",
+    "serve-favicon": "^2.5.0",
+    "underscore": "^1.9.2"
   }
 }
