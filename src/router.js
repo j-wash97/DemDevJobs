@@ -13,5 +13,14 @@ module.exports = (app) => {
   // app.get('/', mid.requireSecure, mid.requireLogout, cont.Account.loginPage);
   // app.get('/domos', cont.Domo.domoPage);
 
+  // main page routes
   app.get('/', cont.GetIndex);
+
+  // account routes
+  app.get('/login', mid.requireSecure, mid.requireLogout, cont.Account.loginPage);
+  app.post('/login', mid.requireSecure, mid.requireLogout, cont.Account.login);
+  app.get('/getToken', mid.requireSecure, cont.Account.getToken);
+  app.post('/signup', mid.requireSecure, mid.requireLogout, cont.Account.signup);
+  app.get('/logout', mid.requireLogin, cont.Account.logout);
+  app.post('/changePass', mid.requireSecure, mid.requireLogin, cont.Account.changePassword);
 };
