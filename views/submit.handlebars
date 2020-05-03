@@ -1,8 +1,8 @@
-<form class="container col-lg-6 pt-2 pb-3" id="submitForm">
+<form class="container col-lg-6 pt-2 pb-3" id="submitForm" action="/submit" method="POST">
     <legend>Submit a New Posting</legend>
     <div class="form-group">
         <label for="title">Title</label>
-        <input class="form-control" type="text" id="title" name="title" placeholder="Title" />
+        <input required class="form-control" type="text" id="title" name="title" placeholder="Title" />
     </div>
     <div class="form-group">
         <label for="level">Level</label>
@@ -26,15 +26,18 @@
     </div>
     <div class="form-group">
         <label for="company">Company</label>
-        <input class="form-control" type="text" id="company" name="company" placeholder="Company" />
+        <select required class="form-control" id="company" name="company">
+            <option disabled selected hidden>Company</option>
+            {{#each companies}}
+            <option value="{{this._id}}">{{this.name}} - {{this.contact}}</option>
+            {{/each}}
+        </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" id="locGroup">
         <label for="location">Location</label>
-        <input class="form-control" type="text" id="location" name="location" placeholder="Location" />
-    </div>
-    <div class="form-group">
-        <label for="contact">Contact</label>
-        <textarea class="form-control" id="contact" name="contact" placeholder="Contact" rows="2"></textarea>
+        <select required class="form-control" id="location" name="location">
+            <option disabled selected hidden>Please Select a Company First</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="salary">Salary</label>
@@ -47,11 +50,13 @@
     </div>
     <div class="form-group">
         <label for="link">Link</label>
-        <input class="form-control" type="url" pattern="https://.*" id="link" name="link" placeholder="Link" />
+        <input required class="form-control" type="url" pattern="https://.*" id="link" name="link" placeholder="Link" />
     </div>
     <div class="form-group">
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description" placeholder="Description" rows="10"></textarea>
     </div>
+    <input type="hidden" name="_csrf" value={{csrfToken}} />
     <button type="submit" class="btn btn-primary">Submit Posting</button>
+    <div id="errorAlert"></div>
 </form>

@@ -1,0 +1,45 @@
+<div class="container col-lg-6 pt-3 pb-3">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item col">
+            <a href="#loginPane" class="nav-link active text-center" data-toggle="tab" role="tab" id="loginTab" aria-controls="loginPane" aria-selected="true">Login</a>
+        </li>
+        <li class="nav-item col">
+            <a href="#signupPane" class="nav-link text-center" data-toggle="tab" role="tab" id="signupTab" aria-controls="signupPane" aria-selected="false">Signup</a>
+        </li>
+    </ul>
+    <div class="tab-content pt-2 mx-2">
+        <div class="tab-pane fade show active" id="loginPane" role="tabpanel" aria-labelledby="loginTab">
+            <form id="loginForm" name="loginForm" action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username: </label>
+                    <input class="form-control" id="user" type="text" name="username" placeholder="username" />
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password: </label>
+                    <input class="form-control" id="pass" type="password" name="pass" placeholder="password" />
+                </div>
+                <input type="hidden" name="_csrf" value={{csrfToken}} />
+                <input class="btn btn-primary" type="submit" value="Sign In" />
+            </form>
+        </div>
+        <div class="tab-pane fade" id="signupPane" role="tabpanel" aria-labelledby="signupTab">
+            <form id="signupForm" name="signupForm" action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="username">Username: </label>
+                    <input class="form-control" type="text" name="username" id="user" placeholder="username"/>
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password: </label>
+                    <input class="form-control" type="password" name="pass" id="pass" placeholder="password"/>
+                </div>
+                <div class="form-group">
+                    <label for="pass2">Password: </label>
+                    <input class="form-control" type="password" name="pass2" id="pass2" placeholder="retype password"/>
+                </div>
+                <input type="hidden" name="_csrf" value={{csrfToken}} />
+                <input type="submit" value="Sign Up" class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
+    <div id="errorAlert"></div>
+</div>

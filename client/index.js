@@ -1,5 +1,60 @@
+const PostingList = props => {
+    const postingNodes = props.postings.map(posting => (
+        <div className="col-sm-6 py-2" key={posting._id}>
+            <div className="card">
+                <div className="card-body">
+                    <h6 className="card-subtitle mb-2 text-muted">{moment(posting.date).fromNow()}</h6>
+                    <h5 className="card-title">{posting.title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">{posting.company}</h6>
+                    <a href={posting.link} className="card-link" target="_blank">Website Link</a>
+                    <a href={`/posting?id=${posting._id}`} className="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    ));
+
+    return ( 
+        <div className="row row-col-1 row-col-2 row-col-4">{postingNodes}</div>
+    );
+};
+
+// l is JS boolean set up in the main layout, indicating whether the user is logged in or not
+const titleBarLinks = l ? <ul className="navbar-nav" id="titleBarLinks">
+        <li className="nav-item active"><a className="nav-link" href="/">View Jobs</a></li>
+        <li className="nav-item"><a className="nav-link" href="/user">Account</a></li>
+        <li className="nav-item"><a className="nav-link" href="/submit">Submit</a></li>
+        <li className="nav-item"><a className="nav-link" href="/logout">Logout</a></li>
+    </ul> :
+    <ul className="navbar-nav" id="titleBarLinks">
+        <li className="nav-item active"><a className="nav-link" href="/">View Jobs</a></li>
+        <li className="nav-item"><a className="nav-link" href="/login">Login/Signup</a></li>
+    </ul>;
+
+const sendAjax = (type, url, data, success, error) => {
+    $.ajax({
+        cache: false,
+        type,
+        url,
+        data,
+        dataType: 'json',
+        success,
+        error
+    });
+};
+
+const handlePostings = params => sendAjax(
+    'GET',
+    '/all',
+    $.param(params),
+    res => ReactDOM.render(<PostingList postings={res.postings} />, document.querySelector('#mainContent')),
+    () => ReactDOM.render(<PostingList postings={[]} />, document.querySelector('#mainContent'))
+);
+
 window.onload = () => {
-    let postings;
+    ReactDOM.render(titleBarLinks, document.querySelector('#linkList'));
+    
+    handlePostings({});
+    /*let postings;
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/getAllPostings');    
@@ -9,17 +64,7 @@ window.onload = () => {
         postings = unsortedPostings.map((x, i) => { return { index: i, posting: x }}).sort((a,b) => b.posting.date - a.posting.date);
         
         for(let posting of postings) {
-            let card = $('#mainContent').append(`<div class="col-sm-3 py-2">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h6 class="card-subtitle mb-2 text-muted">${moment(posting.date).fromNow()}</h6>
-                                                            <h5 class="card-title">${posting.posting.title}</h5>
-                                                            <h6 class="card-subtitle mb-2 text-muted">${posting.posting.company}</h6>
-                                                            <a href="${posting.posting.link}" class="card-link" target="_blank">Website Link</a>
-                                                            <a href="#" class="stretched-link" data-toggle="modal" data-target="#postingDisplay" data-index="${posting.index}"></a>
-                                                        </div>
-                                                    </div>
-                                                </div>`);
+            let card = $('#mainContent').append();
         }
     };
     xhr.send();
@@ -163,5 +208,5 @@ window.onload = () => {
         xhr.send(data);
 
         return false;
-    });
+    });*/
 };

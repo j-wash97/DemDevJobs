@@ -1,0 +1,47 @@
+<div class="container py-2" id="mainContent">
+    <h1>
+        {{posting.title}}
+        <small class="text-muted lead ml-3" id="datePosted" data-date="{{posting.date}}"></small>
+    </h1>
+    <dl class="row mt-5">
+        {{#if posting.link}}
+        <dt class="col-3"><a href="{{posting.link}}" target="_blank">Website Link</a></dt>
+        <dd class="col-9"></dd>
+        {{/if}}
+
+        {{#if posting.company}}
+        <dt class="col-3">Company</dt>
+        <dd class="col-9">{{posting.company}}</dt>
+        {{/if}}
+
+        {{#if posting.location}}
+        <dt class="col-3">Location</dt>
+        <dd class="col-9">{{posting.location}}</dt>
+        {{/if}}
+
+        {{#if posting.level}}
+        <dt class="col-3">Level</dt>
+        <dd class="col-9">{{posting.level}}</dt>
+        {{/if}}
+
+        {{#if posting.category}}
+        <dt class="col-3">Category</dt>
+        <dd class="col-9">{{posting.category}}</dt>
+        {{/if}}
+
+        {{#if posting.contact}}
+        <dt class="col-3">Contact</dt>
+        <dd class="col-9">{{posting.contact}}</dt>
+        {{/if}}
+
+        {{#if posting.salary}}
+        <dt class="col-3">Salary</dt>
+        <dd class="col-9">${{posting.salary}}</dt>
+        {{/if}}
+
+        {{#if posting.description}}
+        <dt class="col-3">Description</dt>
+        <dd class="col-9">{{posting.description}}</dt>
+        {{/if}}
+    </dl>
+</div>

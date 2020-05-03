@@ -1,0 +1,194 @@
+<div class="container col-lg-8 pt-3 pb-3">
+    <h3>Welcome, {{header}}</h3>
+    <ul class="nav nav-tabs pt-3" role="tablist">
+        <li class="nav-item col">
+            <a href="#postingPane" class="nav-link active text-center" data-toggle="tab" role="tab" id="postingTab" aria-controls="postingPane" aria-selected="true">Postings</a>
+        </li>
+        <li class="nav-item col">
+            <a href="#jobsitePane" class="nav-link text-center" data-toggle="tab" role="tab" id="jobsiteTab" aria-controls="jobsitePane" aria-selected="false">Locations</a>
+        </li>
+        <li class="nav-item col">
+            <a href="#companyPane" class="nav-link text-center" data-toggle="tab" role="tab" id="companyTab" aria-controls="companyPane" aria-selected="false">Companies</a>
+        </li>
+        <li class="nav-item col">
+            <a href="#changePane" class="nav-link text-center" data-toggle="tab" role="tab" id="changeTab" aria-controls="changePane" aria-selected="false">Change Password</a>
+        </li>
+    </ul>
+    <div class="tab-content pt-2 mx-2">
+        <div class="tab-pane fade show active" id="postingPane" role="tabpanel" aria-labelledby="postingTab">
+
+        </div>
+        <div class="tab-pane fade" id="jobsitePane" role="tabpanel" aria-labelledby="jobsiteTab">
+            
+        </div>
+        <div class="tab-pane fade" id="companyPane" role="tabpanel" aria-labelledby="companyTab">
+            
+        </div>
+        <div class="tab-pane fade" id="changePane" role="tabpanel" aria-labelledby="changeTab">
+            <div class="list-group col">
+                <form class="list-group-item col" id="changeForm" name="changeForm" action="/changePass" method="POST">
+                    <div class="form-group">
+                        <label for="old">Current Password: </label>
+                        <input class="form-control" type="password" name="old" id="old" placeholder="current"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">New Password: </label>
+                        <input class="form-control" type="password" name="pass" id="pass" placeholder="new"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass2">Confirm New Password: </label>
+                        <input class="form-control" type="password" name="pass2" id="pass2" placeholder="confirm password"/>
+                    </div>
+                    <input type="hidden" name="_csrf" value={{csrfToken}} />
+                    <input type="submit" value="Change Password" class="btn btn-primary"/>
+                </form>
+            </div>
+            <div id="errorAlertPass"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="postingEdit" tabIndex="-1" role="dialog" aria-labelledby="postingEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="postingEditLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="/editPosting" method="post" id="postEditForm">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input required class="form-control" type="text" id="title" name="title" placeholder="Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level</label>
+                        <select required class="form-control" id="level" name="level">
+                            <option value="" disabled selected hidden>Level</option>
+                            <option value="0">Internship/Student</option>
+                            <option value="1">Entry</option>
+                            <option value="2">Mid</option>
+                            <option value="3">Senior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select required class="form-control" id="category" name="category">
+                            <option disabled selected hidden>Category</option>
+                            <option value="0">Art</option>
+                            <option value="1">Design</option>
+                            <option value="2">Engineering</option>
+                            <option value="3">Production</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="compGroup">
+                        <label for="company">Company</label>
+                        <select required class="form-control" id="company" name="company">
+                            <option disabled selected hidden>Company</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="locGroup">
+                        <label for="location">Location</label>
+                        <select required class="form-control" id="location" name="location">
+                            <option disabled selected hidden>Please Select a Company First</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input class="form-control" type="text" id="salary" name="salary" placeholder="Salary" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Link</label>
+                        <input required class="form-control" type="url" pattern="https://.*" id="link" name="link" placeholder="Link" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" placeholder="Description" rows="10"></textarea>
+                    </div>
+                    <input type="hidden" name="_csrf" value={{csrfToken}} />
+                    <input type="hidden" name="_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button class="btn btn-primary">Confirm Edit</button>
+                <div id="errorAlertEditPost"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="companyEdit" tabIndex="-1" role="dialog" aria-labelledby="companyEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="companyEditLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="/editCompany" method="post" id="compEditForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input class="form-control" type="text" name="contact" id="contact" placeholder="Name: ... Email: ... Phone: ...">
+                    </div>
+                    <input type="hidden" name="_csrf" value={{csrfToken}} />
+                    <input type="hidden" name="_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button class="btn btn-primary">Confirm Edit</button>
+                <div id="errorAlertEditComp"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="jobSiteEdit" tabIndex="-1" role="dialog" aria-labelledby="jobSiteEditLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jobSiteEditLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="/editJobSite" method="post" id="jobEditForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <select required class="form-control" name="company" id="company">
+                            <option value="" disabled selected hidden>Company</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input class="form-control" type="text" name="address" id="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" type="text" name="description" id="description" placeholder="Description">
+                    </div>
+                    <input type="hidden" name="_csrf" value={{csrfToken}} />
+                    <input type="hidden" name="_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button class="btn btn-primary">Confirm Edit</button>
+                <div id="errorAlertEditJob"></div>
+            </div>
+        </div>
+    </div>
+</div>

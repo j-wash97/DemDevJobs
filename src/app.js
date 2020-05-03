@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const comp = require('compression');
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const cookie = require('cookie-parser');
 const body = require('body-parser');
 const mongo = require('mongoose');
